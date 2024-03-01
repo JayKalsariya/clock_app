@@ -46,11 +46,15 @@ The clock app aims to provide users with a comprehensive and versatile timekeepi
 
 <img src = "https://github.com/JayKalsariya/clock_app/assets/141019761/27db32a1-0ca8-4f69-851a-6f0b1b76cac3" width = "250">
 
-<img src = "https://github.com/JayKalsariya/clock_app/assets/141019761/32b569cb-92ee-4e01-ad16-5a240973f798" width = "250">
+<img src = "https://github.com/JayKalsariya/clock_app/assets/141019761/1c9712a6-eae5-4dca-9c96-e68658535897" width = "250">
+
+<img src = "https://github.com/JayKalsariya/clock_app/assets/141019761/4ed90d1d-b92d-4371-bf44-2f750198a56e" width = "250">
 
 ## `Video`
 
-https://github.com/JayKalsariya/clock_app/assets/141019761/777fe38f-b0d2-4869-8def-28ac8a404ad7
+https://github.com/JayKalsariya/clock_app/assets/141019761/526fe602-8dd8-49b8-a7d9-a22f60370c04
+
+
 
 
 
