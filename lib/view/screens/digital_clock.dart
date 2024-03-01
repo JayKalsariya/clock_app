@@ -48,7 +48,7 @@ class _DigitalClockState extends State<DigitalClock> {
             SizedBox(
               width: size.width * 0.04,
             ),
-            timeBox(timeFormat: d2.hour),
+            timeBox(timeFormat: (d2.hour) % 12),
             const Text(
               ":",
               style: TextStyle(color: Colors.blue, fontSize: 50),
