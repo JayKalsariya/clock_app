@@ -73,7 +73,7 @@ class _AnalogueClockState extends State<AnalogueClock> {
             // ),
 //Hour
             Transform.rotate(
-              angle: (d.hour - 3) * pi * 2 / 60,
+              angle: (d.hour - 3) * pi * 2 / 12,
               child: Divider(
                 indent: size.width * 0.4,
                 endIndent: size.width * 0.25,

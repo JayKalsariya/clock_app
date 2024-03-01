@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 class Timer2 extends StatefulWidget {
@@ -10,6 +11,7 @@ class Timer2 extends StatefulWidget {
 class _Timer2State extends State<Timer2> {
   int s = 0;
   int m = 0;
+  bool canRun = true;
 
   startTimer() {
     Future.delayed(const Duration(seconds: 1), () {
@@ -19,25 +21,19 @@ class _Timer2State extends State<Timer2> {
           m--;
           s = 59;
         }
-
         if (m == 0 && s == 0) {
-          s == 0;
-          m == 0;
-          // MinCon.clear();
-          // SecCon.clear();
-          Navigator.pushNamed(context, 'result_screen');
+          canRun = false;
         }
-
-        startTimer();
+        if (canRun) {
+          startTimer();
+        }
       });
     });
   }
 
-  TextEditingController minCon = TextEditingController();
-  TextEditingController secCon = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black54,
@@ -81,14 +77,14 @@ class _Timer2State extends State<Timer2> {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    // Transform.scale(
-                    //   scale: 7.5,
-                    //   child: CircularProgressIndicator(
-                    //     value: (m * 60) + s.toDouble(),
-                    //     color: Colors.teal,
-                    //     strokeWidth: 1,
-                    //   ),
-                    // )
+                    Transform.scale(
+                      scale: 7.5,
+                      child: CircularProgressIndicator(
+                        value: s / 60,
+                        color: Colors.teal,
+                        strokeWidth: 1,
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -99,82 +95,72 @@ class _Timer2State extends State<Timer2> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    SizedBox(
-                      width: 150,
-                      height: 75,
-                      child: TextField(
-                        controller: minCon,
-                        onChanged: (val) {
+//Minute
+                    Container(
+                      height: 50,
+                      width: 120,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blue),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: ListWheelScrollView(
+                        itemExtent: 30,
+                        useMagnifier: true,
+                        magnification: 1.2,
+                        diameterRatio: 0.5,
+                        onSelectedItemChanged: (index) {
                           setState(() {
-                            m = int.parse(val);
+                            m = index;
+                            log(m);
                           });
                         },
-                        style: const TextStyle(
-                          fontSize: 25,
-                          color: Color(0xcc7c7c7c),
-                        ),
-                        keyboardType: TextInputType.number,
-                        decoration: const InputDecoration(
-                          hintText: "Minutes",
-                          border: OutlineInputBorder(),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.blue,
-                              width: 2,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.blue,
-                              width: 2,
-                            ),
+                        children: List.generate(
+                          60,
+                          (index) => Text(
+                            "$index",
+                            style: const TextStyle(
+                                fontSize: 25, color: Colors.blue),
                           ),
                         ),
-                        maxLength: 1,
                       ),
                     ),
-                    SizedBox(
-                      width: 150,
-                      height: 75,
-                      child: TextField(
-                        controller: secCon,
-                        onChanged: (val) {
+//Second
+                    Container(
+                      height: 50,
+                      width: 120,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blue),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: ListWheelScrollView(
+                        itemExtent: 30,
+                        useMagnifier: true,
+                        magnification: 1.2,
+                        diameterRatio: 0.5,
+                        onSelectedItemChanged: (index) {
                           setState(() {
-                            s = int.parse(val);
+                            s = index;
                           });
                         },
-                        style: const TextStyle(
-                          fontSize: 25,
-                          color: Color(0xcc7c7c7c),
-                        ),
-                        keyboardType: TextInputType.number,
-                        decoration: const InputDecoration(
-                          hintText: "Seconds",
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.blue,
-                              width: 2,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.blueAccent,
-                              width: 2,
-                            ),
+                        children: List.generate(
+                          60,
+                          (index) => Text(
+                            "$index",
+                            style: const TextStyle(
+                                fontSize: 25, color: Colors.blue),
                           ),
                         ),
-                        maxLength: 2,
                       ),
                     ),
                   ],
                 ),
               ),
-              //Start Button
+//Start Button
               Padding(
-                padding: const EdgeInsets.only(top: 25),
+                padding: const EdgeInsets.only(top: 100),
                 child: Container(
-                  height: 80,
-                  width: 180,
+                  height: 55,
+                  width: 170,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     color: Colors.blue.shade200,
@@ -190,7 +176,7 @@ class _Timer2State extends State<Timer2> {
                       "Start",
                       style: TextStyle(
                         color: Colors.blue.shade900,
-                        fontSize: 20,
+                        fontSize: 24,
                       ),
                     ),
                   ),
